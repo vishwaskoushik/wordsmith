@@ -1,0 +1,16 @@
+steps:
+#step 1
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: [
+   '-c',
+   'docker pull gcr.io/mykubernetes-234210/Wordsmith:latest || exit 0'
+  ]
+#step 2
+- name: gcr.io/cloud-builders/docker
+  args: [
+   'build',
+   '-t',
+   'gcr.io/mykubernetes-234210/Wordsmith:$BRANCH_NAME-$COMMIT_SHA',
+   '.'
+  ]
